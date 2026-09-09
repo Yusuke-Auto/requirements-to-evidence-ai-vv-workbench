@@ -1,0 +1,47 @@
+[
+  {
+    "finding_id": "F-01",
+    "type": "ambiguous_requirement",
+    "requirement_id": "RQ-11",
+    "severity": "high",
+    "reason": "Non-measurable terms and missing explicit trigger/timing thresholds.",
+    "human_review_required": true
+  },
+  {
+    "finding_id": "F-02",
+    "type": "context_contradiction",
+    "requirement_id": "RQ-01",
+    "severity": "high",
+    "reason": "Requirement max speed is 50 km/h while feature catalog max is 40 km/h.",
+    "human_review_required": true
+  },
+  {
+    "finding_id": "F-03",
+    "type": "missing_evidence",
+    "requirement_id": "RQ-10",
+    "test_id": "TC-10",
+    "severity": "high",
+    "reason": "Trace exists but no evidence artifact is linked.",
+    "human_review_required": true
+  },
+  {
+    "finding_id": "F-04",
+    "type": "broken_trace",
+    "requirement_id": "RQ-12",
+    "test_id": "TC-12",
+    "severity": "medium",
+    "reason": "Requirement has no architecture/component allocation.",
+    "human_review_required": true
+  },
+  {
+    "finding_id": "F-05",
+    "type": "guardrail_violation",
+    "requirement_id": "RQ-12",
+    "test_id": "TC-12",
+    "severity": "critical",
+    "reason": "Synthetic attempt to set Approved without Human Review.",
+    "blocked": true,
+    "final_disposition": null,
+    "human_review_required": true
+  }
+]

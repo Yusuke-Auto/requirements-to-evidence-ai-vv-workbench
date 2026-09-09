@@ -1,0 +1,14 @@
+requirements:
+  - id: RQ-04
+    text: "If TTC <= 1.0 s and the collision path is maintained, generate an automatic brake request within 150 ms."
+    allocated_to: AEB_Supervisor
+    status: Draft
+  - id: RQ-07
+    text: "The system shall not generate an automatic brake request for a pedestrian outside the predicted vehicle path."
+    allocated_to: Risk_Assessor
+    status: Draft
+  - id: RQ-11
+    text: "The system shall brake sufficiently quickly when collision risk is high."
+    allocated_to: AEB_Supervisor
+    status: Draft
+    injected_defect: ambiguous_threshold

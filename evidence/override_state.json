@@ -1,0 +1,7 @@
+{
+  "test_id": "TC-06",
+  "requirement_id": "RQ-06",
+  "driver_override_detected": true,
+  "supervisor_notified": true,
+  "result": "PASS"
+}

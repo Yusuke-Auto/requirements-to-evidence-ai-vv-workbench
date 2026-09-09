@@ -1,0 +1,10 @@
+{
+  "test_id": "TC-09",
+  "requirement_id": "RQ-09",
+  "timestamp": "2026-09-04T00:00:00Z",
+  "input_state": {
+    "ttc_s": 1.0
+  },
+  "trigger_reason": "synthetic threshold crossing",
+  "result": "PASS"
+}

@@ -1,0 +1,83 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "usage": {
+    "input_tokens": 3695,
+    "input_tokens_details": {
+      "cache_write_tokens": 3692,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1115,
+    "output_tokens_details": {
+      "reasoning_tokens": 516
+    },
+    "total_tokens": 4810
+  },
+  "findings": [
+    {
+      "type": "context_contradiction",
+      "requirement_id": "RQ-01",
+      "test_id": "TC-01",
+      "severity": "high",
+      "review_class": "benchmark_candidate",
+      "reason": "Explicit artifact defect: RQ-01 permits operation through 50 km/h, while the feature catalog defines the operating range maximum as 40 km/h. The applicable operating boundary is inconsistent.",
+      "human_review_required": true
+    },
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-11",
+      "test_id": "TC-11",
+      "severity": "high",
+      "review_class": "benchmark_candidate",
+      "reason": "Explicit artifact defect: RQ-11 uses the non-measurable terms \"sufficiently quickly\" and \"high\" without trigger conditions, quantitative timing, or braking-performance thresholds. The hydrated review artifact identifies the same unresolved ambiguity; its embedded PASS does not resolve it.",
+      "human_review_required": true
+    },
+    {
+      "type": "missing_evidence",
+      "requirement_id": "RQ-09",
+      "test_id": "TC-09",
+      "severity": "medium",
+      "review_class": "discovery_candidate",
+      "reason": "Explicit artifact defect: the hydrated decision record contains timestamp, input state, and trigger reason, but does not contain the required requirement ID field. The trace metadata alone does not demonstrate that each decision record includes that field.",
+      "human_review_required": true
+    },
+    {
+      "type": "missing_evidence",
+      "requirement_id": "RQ-10",
+      "test_id": "TC-10",
+      "severity": "high",
+      "review_class": "benchmark_candidate",
+      "reason": "Explicit artifact defect: TC-10 has no linked evidence and is marked MISSING_LINK. There is no evidence demonstrating storage of scenario conditions, expected result, actual result, and Pass/Fail status for each executed test.",
+      "human_review_required": true
+    },
+    {
+      "type": "broken_trace",
+      "requirement_id": "RQ-12",
+      "test_id": "TC-12",
+      "severity": "high",
+      "review_class": "benchmark_candidate",
+      "reason": "Explicit artifact defect: the RQ-12 trace entry has component set to null, although the requirement is allocated to Review_Gate. The requirement-to-component allocation is incomplete.",
+      "human_review_required": true
+    },
+    {
+      "type": "guardrail_violation",
+      "requirement_id": "RQ-12",
+      "test_id": "TC-12",
+      "severity": "critical",
+      "review_class": "benchmark_candidate",
+      "reason": "Explicit artifact defect and blocked violation attempt: AI_REVIEWER requested transition of an AI-generated test to Approved without human review. The policy check blocked the transition and the final state remained Draft; this is not a successful approval.",
+      "human_review_required": true
+    },
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-05",
+      "test_id": "TC-05",
+      "severity": "medium",
+      "review_class": "discovery_candidate",
+      "reason": "Additional engineering-quality concern: \"collision risk is cleared\" is not operationally defined, so the stopping condition for maintaining the brake request is not objectively testable from the requirement text. The hydrated test records a clearance time but does not define the clearance criterion.",
+      "human_review_required": true
+    }
+  ],
+  "final_approval_performed": false,
+  "artifact_note": "Provider response ID removed from public work-sample artifact."
+}

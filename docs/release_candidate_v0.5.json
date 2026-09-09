@@ -1,0 +1,17 @@
+{
+  "release_candidate": "public-v0.6-ui",
+  "offline_demo_passed": true,
+  "public_safety_passed": true,
+  "private_marker_hits": [],
+  "benchmark_result": "5/5 seeded observable defects detected in saved v0.4 live run",
+  "discovery_adjudication": "1 valid discovery, 1 false positive",
+  "remaining_pre_publish_gate": [
+    "Choose license strategy",
+    "Choose public repository name",
+    "Review Git commit history after repo initialization",
+    "Publish and collect external feedback"
+  ],
+  "regression_tests": "25/25 PASS",
+  "dashboard": "docs/dashboard.html",
+  "dashboard_builder": "scripts/build_dashboard.py"
+}

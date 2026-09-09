@@ -1,0 +1,8 @@
+{
+  "feature": "Synthetic_AEB",
+  "operating_range_kmh": {
+    "min": 10,
+    "max": 40
+  },
+  "note": "Intentional contradiction: RQ-01 states max 50 km/h."
+}

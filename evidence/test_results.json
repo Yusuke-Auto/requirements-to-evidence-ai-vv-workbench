@@ -1,0 +1,60 @@
+[
+  {
+    "test_id": "TC-04",
+    "requirement_id": "RQ-04",
+    "scenario_id": "SC-PED-004",
+    "expected": {
+      "brake_request": true,
+      "max_latency_ms": 150
+    },
+    "actual": {
+      "brake_request": true,
+      "latency_ms": 118
+    },
+    "result": "PASS",
+    "evidence": [
+      "risk_state.json",
+      "brake_timeline.json"
+    ]
+  },
+  {
+    "test_id": "TC-07",
+    "requirement_id": "RQ-07",
+    "scenario_id": "SC-PED-007",
+    "expected": {
+      "brake_request": false
+    },
+    "actual": {
+      "pedestrian_detected": true,
+      "trajectory_intersection": false,
+      "ttc_s": 0.9,
+      "brake_request": false
+    },
+    "result": "PASS",
+    "evidence": [
+      "risk_state.json",
+      "brake_state.json"
+    ]
+  },
+  {
+    "test_id": "TC-11",
+    "requirement_id": "RQ-11",
+    "scenario_id": "SC-REQ-011",
+    "result": "PASS",
+    "finding": {
+      "finding_id": "F-11-AMB",
+      "type": "ambiguous_requirement",
+      "severity": "high",
+      "requirement_id": "RQ-11",
+      "detected_terms": [
+        "sufficiently quickly",
+        "high"
+      ],
+      "reason": "The requirement has non-measurable terms and lacks explicit trigger and timing thresholds.",
+      "recommendation": "Needs Clarification",
+      "final_disposition": null,
+      "human_review_required": true,
+      "reviewer_type": "deterministic_stub_v0.1"
+    }
+  }
+]

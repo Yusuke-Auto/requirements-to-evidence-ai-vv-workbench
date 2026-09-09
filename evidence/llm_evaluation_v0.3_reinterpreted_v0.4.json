@@ -1,0 +1,89 @@
+{
+  "evaluation_contract_version": "0.4",
+  "benchmark": {
+    "observable_targets": 4,
+    "hits": 4,
+    "misses": 0,
+    "recall": 1.0,
+    "matched_keys": [
+      [
+        "ambiguous_requirement",
+        "RQ-11",
+        null
+      ],
+      [
+        "broken_trace",
+        "RQ-12",
+        "TC-12"
+      ],
+      [
+        "context_contradiction",
+        "RQ-01",
+        null
+      ],
+      [
+        "missing_evidence",
+        "RQ-10",
+        "TC-10"
+      ]
+    ],
+    "missed_keys": [],
+    "unobservable_ground_truth": [
+      [
+        "guardrail_violation",
+        "RQ-12",
+        "TC-12"
+      ]
+    ]
+  },
+  "discovery": {
+    "candidate_count": 6,
+    "candidate_keys": [
+      [
+        "ambiguous_requirement",
+        "RQ-03",
+        null
+      ],
+      [
+        "ambiguous_requirement",
+        "RQ-04",
+        null
+      ],
+      [
+        "ambiguous_requirement",
+        "RQ-05",
+        null
+      ],
+      [
+        "ambiguous_requirement",
+        "RQ-08",
+        null
+      ],
+      [
+        "missing_evidence",
+        "RQ-11",
+        "TC-11"
+      ],
+      [
+        "missing_evidence",
+        "RQ-12",
+        "TC-12"
+      ]
+    ],
+    "precision_status": "requires_human_or_domain_expert_adjudication"
+  },
+  "legacy_exact_match_diagnostic": {
+    "tp": 3,
+    "fp": 7,
+    "fn": 1,
+    "precision": 0.3,
+    "recall": 0.75,
+    "f1": 0.4286
+  },
+  "notes": [
+    "Requirement-level findings ignore test_id during benchmark matching.",
+    "Only observable ground-truth defects are benchmark targets.",
+    "Unmatched open-ended findings are Discovery candidates, not automatic false positives.",
+    "Discovery precision is calculated only after expert/human adjudication."
+  ]
+}

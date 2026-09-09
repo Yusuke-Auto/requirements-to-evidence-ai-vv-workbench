@@ -1,0 +1,100 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "usage": {
+    "input_tokens": 1543,
+    "input_tokens_details": {
+      "cache_write_tokens": 1540,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1628,
+    "output_tokens_details": {
+      "reasoning_tokens": 1034
+    },
+    "total_tokens": 3171
+  },
+  "findings": [
+    {
+      "type": "context_contradiction",
+      "requirement_id": "RQ-01",
+      "test_id": null,
+      "severity": "high",
+      "reason": "RQ-01 permits operation through 50 km/h, while the feature catalog limits Synthetic_AEB to 40 km/h. The applicable operating boundary is inconsistent.",
+      "human_review_required": true
+    },
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-03",
+      "test_id": "TC-03",
+      "severity": "medium",
+      "reason": "The requirement does not define how predicted-path intersection or TTC is calculated, including boundary conditions and validity of the prediction.",
+      "human_review_required": true
+    },
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-04",
+      "test_id": "TC-04",
+      "severity": "high",
+      "reason": "Collision path maintained is undefined, and the 150 ms timing reference point and measurement method are not specified.",
+      "human_review_required": true
+    },
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-05",
+      "test_id": "TC-05",
+      "severity": "medium",
+      "reason": "Collision risk cleared is not operationally defined, so the required endpoint for maintaining the brake request is unclear.",
+      "human_review_required": true
+    },
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-08",
+      "test_id": "TC-08",
+      "severity": "high",
+      "reason": "Mandatory sensor input and invalidity criteria are unspecified, preventing an unambiguous determination of when automatic braking must be inhibited.",
+      "human_review_required": true
+    },
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-11",
+      "test_id": "TC-11",
+      "severity": "high",
+      "reason": "Sufficiently quickly and high collision risk have no quantitative thresholds, timing limits, or measurable acceptance criteria.",
+      "human_review_required": true
+    },
+    {
+      "type": "missing_evidence",
+      "requirement_id": "RQ-10",
+      "test_id": "TC-10",
+      "severity": "high",
+      "reason": "The trace explicitly provides no evidence artifact, so storage of scenario conditions, expected result, actual result, and Pass/Fail status cannot be assessed.",
+      "human_review_required": true
+    },
+    {
+      "type": "broken_trace",
+      "requirement_id": "RQ-12",
+      "test_id": "TC-12",
+      "severity": "high",
+      "reason": "The trace entry has no allocated component, leaving RQ-12 without an accountable implementation or review-gate owner.",
+      "human_review_required": true
+    },
+    {
+      "type": "missing_evidence",
+      "requirement_id": "RQ-12",
+      "test_id": "TC-12",
+      "severity": "critical",
+      "reason": "The contents of approval_audit.json are not supplied, so there is no inspectable evidence that an AI-generated test was not promoted to Approved without Human Review.",
+      "human_review_required": true
+    },
+    {
+      "type": "missing_evidence",
+      "requirement_id": "RQ-11",
+      "test_id": "TC-11",
+      "severity": "medium",
+      "reason": "The cited review_findings.json is not supplied and no test result is provided, so compliance with the requirement's effectiveness claim cannot be assessed.",
+      "human_review_required": true
+    }
+  ],
+  "final_approval_performed": false,
+  "artifact_note": "Provider response ID removed from public work-sample artifact."
+}

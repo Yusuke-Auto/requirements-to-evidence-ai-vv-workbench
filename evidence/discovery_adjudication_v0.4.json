@@ -1,0 +1,34 @@
+{
+  "version": "0.4.1",
+  "reviewed_by": "human_review",
+  "source_run": "gpt-5.6-luna v0.4 live run",
+  "decisions": [
+    {
+      "type": "ambiguous_requirement",
+      "requirement_id": "RQ-05",
+      "test_id": "TC-05",
+      "decision": "VALID_DISCOVERY",
+      "reason": "RQ-05 says to maintain braking until 'collision risk is cleared' but does not define a measurable clearance criterion. The evidence records a clearance time, but a timestamp is not the criterion that makes the requirement objectively testable."
+    },
+    {
+      "type": "missing_evidence",
+      "requirement_id": "RQ-09",
+      "test_id": "TC-09",
+      "decision": "FALSE_POSITIVE",
+      "reason": "The hydrated decision_record.json explicitly contains requirement_id, timestamp, input_state, and trigger_reason. The LLM finding incorrectly claimed requirement_id was absent."
+    }
+  ],
+  "summary": {
+    "discovery_candidates": 2,
+    "valid_discoveries": 1,
+    "false_positives": 1,
+    "discovery_precision": 0.5,
+    "benchmark_hits": 5,
+    "benchmark_targets": 5,
+    "benchmark_recall": 1.0,
+    "accepted_findings_total": 6,
+    "findings_total": 7,
+    "accepted_finding_rate_this_run": 0.8571
+  },
+  "caution": "The 6/7 accepted-finding rate is a single synthetic run and is not a general production precision estimate."
+}

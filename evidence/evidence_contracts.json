@@ -1,0 +1,15 @@
+{
+  "contracts": [
+    {
+      "requirement_id": "RQ-09",
+      "artifact": "evidence/decision_record.json",
+      "required_fields": [
+        "timestamp",
+        "requirement_id",
+        "input_state",
+        "trigger_reason"
+      ],
+      "purpose": "Deterministically validate record completeness before semantic LLM review."
+    }
+  ]
+}

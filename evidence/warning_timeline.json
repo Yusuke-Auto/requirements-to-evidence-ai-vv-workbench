@@ -1,0 +1,8 @@
+{
+  "test_id": "TC-03",
+  "requirement_id": "RQ-03",
+  "trajectory_intersection": true,
+  "ttc_s": 1.4,
+  "warning_request": true,
+  "result": "PASS"
+}

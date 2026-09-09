@@ -1,0 +1,63 @@
+[
+  {
+    "id": "RQ-01",
+    "text": "When AEB is enabled and vehicle speed is 10\u201350 km/h, the system shall monitor forward pedestrian collision risk.",
+    "component": "Risk_Assessor"
+  },
+  {
+    "id": "RQ-02",
+    "text": "A pedestrian track sustained for at least 200 ms shall be provided to the Risk Assessor.",
+    "component": "Perception_Adapter"
+  },
+  {
+    "id": "RQ-03",
+    "text": "If predicted vehicle path intersects a pedestrian and TTC <= 1.5 s, the system shall generate a warning request.",
+    "component": "AEB_Supervisor"
+  },
+  {
+    "id": "RQ-04",
+    "text": "If TTC <= 1.0 s and collision path is maintained, generate an automatic brake request within 150 ms.",
+    "component": "AEB_Supervisor"
+  },
+  {
+    "id": "RQ-05",
+    "text": "During automatic braking, maintain the brake request until collision risk is cleared.",
+    "component": "Brake_Interface"
+  },
+  {
+    "id": "RQ-06",
+    "text": "When driver override is detected, the AEB Supervisor shall receive the override state.",
+    "component": "AEB_Supervisor"
+  },
+  {
+    "id": "RQ-07",
+    "text": "The system shall not generate an automatic brake request for a pedestrian outside the predicted vehicle path.",
+    "component": "Risk_Assessor"
+  },
+  {
+    "id": "RQ-08",
+    "text": "If a mandatory sensor input is invalid, automatic braking shall be inhibited and a Degraded state shall be output.",
+    "component": "Perception_Adapter"
+  },
+  {
+    "id": "RQ-09",
+    "text": "Each AEB decision record shall include timestamp, requirement ID, input state, and trigger reason.",
+    "component": "Evidence_Logger"
+  },
+  {
+    "id": "RQ-10",
+    "text": "Each executed test shall store scenario conditions, expected result, actual result, and Pass/Fail status.",
+    "component": "Evidence_Logger"
+  },
+  {
+    "id": "RQ-11",
+    "text": "The system shall brake sufficiently quickly when collision risk is high.",
+    "component": "AEB_Supervisor",
+    "injected_defect": "ambiguous_threshold"
+  },
+  {
+    "id": "RQ-12",
+    "text": "An AI-generated test shall not be promoted to Approved without Human Review.",
+    "component": "Review_Gate"
+  }
+]

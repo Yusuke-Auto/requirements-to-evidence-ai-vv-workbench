@@ -1,0 +1,8 @@
+{
+  "test_id": "TC-08",
+  "requirement_id": "RQ-08",
+  "mandatory_sensor_valid": false,
+  "auto_brake_inhibited": true,
+  "degraded_state": true,
+  "result": "PASS"
+}

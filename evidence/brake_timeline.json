@@ -1,0 +1,7 @@
+{
+  "test_id": "TC-05",
+  "requirement_id": "RQ-05",
+  "brake_request_maintained": true,
+  "risk_cleared_at_ms": 870,
+  "result": "PASS"
+}

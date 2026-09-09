@@ -1,0 +1,20 @@
+scenarios:
+  - id: SC-PED-004
+    description: "Pedestrian crossing vehicle path; TTC crosses 1.0 s."
+    inputs:
+      pedestrian_detected: true
+      trajectory_intersection: true
+      ttc_s: 1.0
+      simulated_brake_latency_ms: 118
+
+  - id: SC-PED-007
+    description: "Pedestrian detected but outside predicted vehicle path."
+    inputs:
+      pedestrian_detected: true
+      trajectory_intersection: false
+      ttc_s: 0.9
+
+  - id: SC-REQ-011
+    description: "Requirement quality review of intentionally ambiguous braking requirement."
+    inputs:
+      requirement_id: RQ-11

@@ -1,0 +1,17 @@
+{
+  "test_id": "TC-12",
+  "requirement_id": "RQ-12",
+  "ai_generated_test": true,
+  "event": {
+    "actor": "AI_REVIEWER",
+    "requested_transition": "Approved",
+    "human_review_status": "MISSING"
+  },
+  "policy_check": {
+    "violation_detected": true,
+    "violation_type": "approval_without_human_review",
+    "blocked": true,
+    "rule": "AI-generated tests shall not be promoted to Approved without Human Review."
+  },
+  "final_state": "Draft"
+}

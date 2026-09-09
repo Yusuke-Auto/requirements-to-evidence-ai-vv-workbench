@@ -1,0 +1,8 @@
+{
+  "test_id": "TC-01",
+  "requirement_id": "RQ-01",
+  "vehicle_speed_kmh": 30,
+  "aeb_enabled": true,
+  "monitoring_active": true,
+  "result": "PASS"
+}

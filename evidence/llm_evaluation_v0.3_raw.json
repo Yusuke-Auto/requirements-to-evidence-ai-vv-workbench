@@ -1,0 +1,74 @@
+{
+  "tp": 3,
+  "fp": 7,
+  "fn": 2,
+  "precision": 0.3,
+  "recall": 0.6,
+  "f1": 0.4,
+  "true_positive_keys": [
+    [
+      "broken_trace",
+      "RQ-12",
+      "TC-12"
+    ],
+    [
+      "context_contradiction",
+      "RQ-01",
+      null
+    ],
+    [
+      "missing_evidence",
+      "RQ-10",
+      "TC-10"
+    ]
+  ],
+  "false_positive_keys": [
+    [
+      "ambiguous_requirement",
+      "RQ-03",
+      "TC-03"
+    ],
+    [
+      "ambiguous_requirement",
+      "RQ-04",
+      "TC-04"
+    ],
+    [
+      "ambiguous_requirement",
+      "RQ-05",
+      "TC-05"
+    ],
+    [
+      "ambiguous_requirement",
+      "RQ-08",
+      "TC-08"
+    ],
+    [
+      "ambiguous_requirement",
+      "RQ-11",
+      "TC-11"
+    ],
+    [
+      "missing_evidence",
+      "RQ-11",
+      "TC-11"
+    ],
+    [
+      "missing_evidence",
+      "RQ-12",
+      "TC-12"
+    ]
+  ],
+  "false_negative_keys": [
+    [
+      "ambiguous_requirement",
+      "RQ-11",
+      null
+    ],
+    [
+      "guardrail_violation",
+      "RQ-12",
+      "TC-12"
+    ]
+  ]
+}

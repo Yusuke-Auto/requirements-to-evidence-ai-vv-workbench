@@ -1,0 +1,18 @@
+{
+  "validator": "deterministic_evidence_contract",
+  "overall_result": "PASS",
+  "results": [
+    {
+      "requirement_id": "RQ-09",
+      "artifact": "evidence/decision_record.json",
+      "required_fields": [
+        "timestamp",
+        "requirement_id",
+        "input_state",
+        "trigger_reason"
+      ],
+      "missing_fields": [],
+      "result": "PASS"
+    }
+  ]
+}

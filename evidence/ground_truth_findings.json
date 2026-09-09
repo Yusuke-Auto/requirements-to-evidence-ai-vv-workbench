@@ -1,0 +1,42 @@
+[
+  {
+    "finding_id": "F-01",
+    "type": "ambiguous_requirement",
+    "requirement_id": "RQ-11",
+    "test_id": null,
+    "scope": "requirement",
+    "observable": true
+  },
+  {
+    "finding_id": "F-02",
+    "type": "context_contradiction",
+    "requirement_id": "RQ-01",
+    "test_id": null,
+    "scope": "requirement",
+    "observable": true
+  },
+  {
+    "finding_id": "F-03",
+    "type": "missing_evidence",
+    "requirement_id": "RQ-10",
+    "test_id": "TC-10",
+    "scope": "test",
+    "observable": true
+  },
+  {
+    "finding_id": "F-04",
+    "type": "broken_trace",
+    "requirement_id": "RQ-12",
+    "test_id": "TC-12",
+    "scope": "test",
+    "observable": true
+  },
+  {
+    "finding_id": "F-05",
+    "type": "guardrail_violation",
+    "requirement_id": "RQ-12",
+    "test_id": "TC-12",
+    "scope": "test",
+    "observable": true
+  }
+]

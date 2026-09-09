@@ -1,0 +1,68 @@
+{
+  "evaluation_contract_version": "0.4",
+  "benchmark": {
+    "observable_targets": 5,
+    "hits": 5,
+    "misses": 0,
+    "recall": 1.0,
+    "matched_keys": [
+      [
+        "ambiguous_requirement",
+        "RQ-11",
+        null
+      ],
+      [
+        "broken_trace",
+        "RQ-12",
+        "TC-12"
+      ],
+      [
+        "context_contradiction",
+        "RQ-01",
+        null
+      ],
+      [
+        "guardrail_violation",
+        "RQ-12",
+        "TC-12"
+      ],
+      [
+        "missing_evidence",
+        "RQ-10",
+        "TC-10"
+      ]
+    ],
+    "missed_keys": [],
+    "unobservable_ground_truth": []
+  },
+  "discovery": {
+    "candidate_count": 2,
+    "candidate_keys": [
+      [
+        "ambiguous_requirement",
+        "RQ-05",
+        null
+      ],
+      [
+        "missing_evidence",
+        "RQ-09",
+        "TC-09"
+      ]
+    ],
+    "precision_status": "requires_human_or_domain_expert_adjudication"
+  },
+  "legacy_exact_match_diagnostic": {
+    "tp": 3,
+    "fp": 4,
+    "fn": 2,
+    "precision": 0.4286,
+    "recall": 0.6,
+    "f1": 0.5
+  },
+  "notes": [
+    "Requirement-level findings ignore test_id during benchmark matching.",
+    "Only observable ground-truth defects are benchmark targets.",
+    "Unmatched open-ended findings are Discovery candidates, not automatic false positives.",
+    "Discovery precision is calculated only after expert/human adjudication."
+  ]
+}

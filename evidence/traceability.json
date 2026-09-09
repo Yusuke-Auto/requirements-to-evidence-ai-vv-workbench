@@ -1,0 +1,76 @@
+[
+  {
+    "requirement_id": "RQ-01",
+    "component": "Risk_Assessor",
+    "test_id": "TC-01",
+    "evidence": "evidence/monitoring_state.json"
+  },
+  {
+    "requirement_id": "RQ-02",
+    "component": "Perception_Adapter",
+    "test_id": "TC-02",
+    "evidence": "evidence/track_timeline.json"
+  },
+  {
+    "requirement_id": "RQ-03",
+    "component": "AEB_Supervisor",
+    "test_id": "TC-03",
+    "evidence": "evidence/warning_timeline.json"
+  },
+  {
+    "requirement_id": "RQ-04",
+    "component": "AEB_Supervisor",
+    "test_id": "TC-04",
+    "evidence": "evidence/test_results.json"
+  },
+  {
+    "requirement_id": "RQ-05",
+    "component": "Brake_Interface",
+    "test_id": "TC-05",
+    "evidence": "evidence/brake_timeline.json"
+  },
+  {
+    "requirement_id": "RQ-06",
+    "component": "AEB_Supervisor",
+    "test_id": "TC-06",
+    "evidence": "evidence/override_state.json"
+  },
+  {
+    "requirement_id": "RQ-07",
+    "component": "Risk_Assessor",
+    "test_id": "TC-07",
+    "evidence": "evidence/test_results.json"
+  },
+  {
+    "requirement_id": "RQ-08",
+    "component": "Perception_Adapter",
+    "test_id": "TC-08",
+    "evidence": "evidence/degraded_state.json"
+  },
+  {
+    "requirement_id": "RQ-09",
+    "component": "Evidence_Logger",
+    "test_id": "TC-09",
+    "evidence": "evidence/decision_record.json"
+  },
+  {
+    "requirement_id": "RQ-10",
+    "component": "Evidence_Logger",
+    "test_id": "TC-10",
+    "evidence": null,
+    "injected_defect": "missing_evidence"
+  },
+  {
+    "requirement_id": "RQ-11",
+    "component": "AEB_Supervisor",
+    "test_id": "TC-11",
+    "evidence": "findings/review_findings.json"
+  },
+  {
+    "requirement_id": "RQ-12",
+    "component": null,
+    "test_id": "TC-12",
+    "evidence": "evidence/approval_audit.json",
+    "injected_defect": "broken_allocation"
+  }
+]
