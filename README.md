@@ -222,8 +222,10 @@ See `docs/limitations.md`.
 
 ## Public-release status
 
-The code/data package passes an automated public-safety scan and excludes internal task notes and provider response IDs.
+This repository is publicly released under the **MIT License** with a fresh public history.
 
-One deliberate release decision remains: choose a license strategy before publishing.
+The code/data package passes an automated public-safety scan and excludes internal task notes and provider response IDs. The offline work sample is reproducible through the public demo, regression tests, and CI workflow.
 
-See `docs/public_release_checklist.md`.
+Current claim boundary: this is a synthetic engineering work sample, not evidence of production-vehicle accuracy, OEM/NCAP/ISO 26262/ASPICE compliance, or customer deployment.
+
+See `docs/public_release_checklist.md` and `LICENSE`.
