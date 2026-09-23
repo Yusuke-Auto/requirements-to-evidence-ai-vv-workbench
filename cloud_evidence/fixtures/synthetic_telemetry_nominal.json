@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "synthetic": true,
+  "message_id": "syn-telemetry-0001",
+  "device_id": "synthetic-bench-01",
+  "scenario_id": "pedestrian_aeb",
+  "requirement_id": "RQ-09",
+  "timestamp": "2026-09-04T00:00:00Z",
+  "signals": {
+    "vehicle_speed_kph": 30.0,
+    "ttc_s": 1.0,
+    "brake_request": true
+  }
+}

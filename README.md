@@ -121,6 +121,14 @@ powershell -ExecutionPolicy Bypass -File .\run_live_review.ps1
 
 The script reads `OPENAI_API_KEY` into the current process only and removes it afterward. The key is not written to the repository.
 
+## Optional AWS Cloud Evidence extension
+
+`cloud_evidence/` is a small, isolated sketch of capturing **synthetic** telemetry as evidence in AWS:
+
+`synthetic telemetry → AWS IoT Core (MQTT) → IoT Rule → Lambda → S3 evidence bucket + CloudWatch Logs`
+
+It is not used by the offline demo and is not required to reproduce anything above. Local contract tests run offline. AWS only stores evidence copies: it makes no safety decision and cannot approve anything. The setup steps, IAM policy, cost notes, and limitations are in `docs/aws_cloud_evidence.md`.
+
 ## V&V result
 
 ### First live evaluation: why `F1 = 0.40` was misleading
@@ -193,6 +201,7 @@ evidence/         traces, audit events, results, evaluation artifacts
 findings/         saved deterministic and LLM review outputs
 scripts/          runners, evaluator, structural validator, safety check
 tests/            regression tests
+cloud_evidence/   optional AWS Cloud Evidence extension (not used offline)
 docs/             architecture, evaluation story, limitations, demo guide
 .github/workflows verify the offline work sample in CI
 ```

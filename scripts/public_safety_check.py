@@ -8,6 +8,9 @@ SELF = Path(__file__).resolve()
 SECRET_PATTERNS = [
     re.compile(r"sk-[A-Za-z0-9_-]{20,}"),
     re.compile(r"sk-proj-[A-Za-z0-9_-]{20,}"),
+    re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b"),  # AWS access key ID
+    re.compile(r"arn:aws[a-z-]*:[a-z0-9-]*:[a-z0-9-]*:\d{12}:"),  # ARN with a real account ID
+    re.compile("LIFE" + r"-\d+"),  # any internal tracker ID
 ]
 
 # Construct selected internal markers without embedding them verbatim in this checker.
