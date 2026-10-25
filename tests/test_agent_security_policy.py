@@ -18,6 +18,17 @@ class AgentBaselineContractTest(unittest.TestCase):
         self.assertEqual(p["disableAutoMode"], "disable")
         self.assertFalse(p.get("allow"), "No blanket auto-approved tools allowed")
 
+    def test_windows_powershell_commands_require_explicit_approval(self):
+        required = {
+            "PowerShell(git push *)",
+            "PowerShell(git reset --hard *)",
+            "PowerShell(git clean *)",
+            "PowerShell(pip install *)",
+            "PowerShell(npm install *)",
+        }
+        self.assertTrue(required.issubset(set(self.policy["permissions"]["ask"])))
+        self.assertEqual(self.policy["permissions"]["defaultMode"], "default")
+
     def test_secret_files_denied_by_builtin_tools(self):
         deny = set(self.policy["permissions"]["deny"])
         for operation in ("Read", "Edit"):
