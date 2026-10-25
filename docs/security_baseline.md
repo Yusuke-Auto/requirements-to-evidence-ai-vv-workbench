@@ -16,7 +16,7 @@ Data flow: synthetic requirement -> planner draft -> approved scoped execution -
 
 ## Guardrails
 
-1. **Sandbox.** Run unknown code and AI-proposed shell commands inside a disposable workspace/container. On Windows, Claude Code's Bash sandbox is supported via WSL2 rather than native Windows. On a supported platform, enable sandboxing, require fail-closed if unavailable, and disable unsandboxed fallback. Inspect resolved state with `/sandbox` and test a blocked file read; prompts alone are not OS isolation.
+1. **Sandbox.** **Native Windows tier:** Claude Code operates without the built-in OS shell sandbox; default/manual permissions and verified Read/Edit denial may be acceptable for synthetic, attended work, but arbitrary subprocesses and egress are not isolated. WSL2 is optional, not a completion prerequisite for the basic app-permission gate. **Strong isolation tier:** use WSL2, a separate VM, or a container; verify OS-enforced shell sandbox settings, fail-closed behavior, blocked file reads and network egress. A policy-only or prompt-only test is not proof of OS isolation.
 2. **Least privilege.** Default agent rights to reading this repository and writing only its intended output/test paths. No broad home directory, other workspace, employer material, cloud production resource or elevated shell authority. Use the default/manual permission mode and review each permission in `/permissions`. Treat new MCP/connector tools as new authority.
 3. **Secret isolation.** Never paste actual tokens, private keys, unredacted records, or real business/customer data into agent context or public repositories. Use a credential store or process-scoped injection only for tasks with explicit need and human approval; redact logs. Only `.env.example` may be committed with placeholder values. The repository scan now covers `.env` and `.env.*` if present, but the scan is **not** a substitute for proper secret isolation or a comprehensive secret scanner.
 4. **Egress.** Offline is the default for repeatable tests. Each model/API call, upload, package download and newly requested destination requires a reviewed purpose, destination and data classification. On supporting Claude Code versions, enforce a strict network allowlist from user/managed settings; a project-only `strictAllowlist` does not enforce it. Sandboxed shell network rules do not automatically constrain cloud connectors.
@@ -42,7 +42,7 @@ Both negative tests use fabricated key-shaped strings in temporary directories. 
 
 ## Remaining verification gates (use existing engineering integration session)
 
-1. **Local host gate:** Capture actual CLI/IDE version and `/sandbox`, `/permissions`, Workspace Trust, Windows-vs-WSL2 context; test one blocked read in the real sandbox without using any real credentials.
+1. **Local host gate:** Capture actual CLI/IDE version and `/permissions`; on native Windows, prove a built-in Read tool denies synthetic `.env` while `public.txt` succeeds, and explicitly record unsandboxed subprocess risk. If stronger isolation is required, verify a real WSL2/container OS-level deny as an independent test.
 2. **Egress/connector gate:** Inventory grants and allowlisted domains, then safely confirm one outbound denial using synthetic data, distinguishing local shell from cloud connectors.
 3. **CI account gate:** Inspect GitHub Settings -> Actions and branch/ruleset protection with suitable access, confirm PR CI completes, and review the diff before merge.
 
