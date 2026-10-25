@@ -24,7 +24,12 @@
       "Bash(git reset --hard *)",
       "Bash(git clean *)",
       "Bash(pip install *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "PowerShell(git push *)",
+      "PowerShell(git reset --hard *)",
+      "PowerShell(git clean *)",
+      "PowerShell(pip install *)",
+      "PowerShell(npm install *)"
     ]
   },
   "sandbox": {
