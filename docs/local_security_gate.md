@@ -64,17 +64,23 @@ If the deny rule is ignored, Gate 0 FAIL. Do not claim this blocks arbitrary sub
 
 Why both tests: Claude Code's shell sandbox does not constrain built-in Read, hooks or MCP tools. The project Read rules and sandbox file rules protect different pathways.
 
-## Gate 2: egress and connector grants (20 minutes)
+## Gate 2: MCP/connector grants and egress policy (20 minutes)
 
-1. After verifying sandbox is ON and `network.strictAllowlist=true` from **user** settings, ask Claude to run this command in **the sandboxed shell tool**:
-   
+**Native Windows, no OS shell sandbox:** The app-level Read denial demonstrated in Gate 0 does **not** enforce outbound network restrictions or stop arbitrary subprocesses from reading files. Record this as **accepted only for attended, synthetic-data tasks**, not as a tested network denial. Do not run `curl` on Windows and call a regular HTTP or DNS failure a sandbox-negative-test PASS.
+
+1. From a normal PowerShell terminal in the **actual project directory**, inspect configured Claude Code MCP servers (read-only):
+   ```powershell
+   claude.cmd mcp list
+   ```
+   Then in Claude Code, use `/mcp` to inspect tool access and server status. MCP servers can be at local, project, user or managed scope. Do **not** paste raw output from `claude mcp get`, `.mcp.json`, `~/.claude.json`, environment variable dumps or credential files into Jira/ChatGPT. Inspect first and share only **redacted server names, enabled/disabled state, read/write capabilities, scope**. URL query strings, headers, auth tokens, user identifiers and client secrets must be removed.
+2. For each server: classify provider, tool capabilities (read / write / external send / destructive), account scope, necessity for synthetic portfolio development, user-approval path, and whether the server is trusted. Unknown or unneeded services: disconnect/disable after user approval. Account permissions are administered separately from this GitHub PR.
+3. Native Windows minimum policy: no unattended network-active shell commands, no real credentials/business records in CLI agent context, no implicit `Yes and don't ask again` for network/upload commands. Require explicit approval for **destination, action, data classification and reversibility** before any external send. An interactive approval is procedural, not a verified egress firewall.
+4. For an OS-enforced **network-deny negative test**, first run the agent inside an explicitly approved WSL2 shell sandbox/VM/container with an actual fail-closed proxy and allowlist. Check effective `strictAllowlist` from USER/managed settings and sandbox=ON. Only there, invoke via **sandboxed shell**:
    ```sh
    curl --head --max-time 7 https://example.com
    ```
-
-   With an empty approved-domain list, a sandbox **host-not-allowed** denial is PASS. A successful HTTP response is FAIL. DNS failure, unrelated timeout, or manual approval prompt without execution is INCONCLUSIVE; do not claim a PASS or allow an unsandboxed retry. No user data should be sent. This tests shell proxy only, not WebFetch or external MCP connectors.
-2. Inspect `/mcp` and `/permissions` without dumping token values. For each connected provider, record *tool name*, *read vs write*, *account scope*, *purpose*, and whether an additional human approval is configured. If overly broad, disable the grant or request its scope to be narrowed in the provider dashboard.
-3. Do not transmit real email, source files, keys or account data to a test endpoint. Use placeholders in any future connector write test.
+   A policy-level host-not-allowed denial is PASS. Successful HTTP is FAIL; DNS timeout, generic network error or a permission prompt is INCONCLUSIVE. Do not retry unsandboxed. This tests subprocess egress only, not MCP/WebFetch or cloud-connected tools.
+5. All evidence is metadata only: source, date, capability, expected/actual DENY or UNKNOWN; never copy token values.
 
 ## Gate 3: GitHub settings (10 minutes)
 
