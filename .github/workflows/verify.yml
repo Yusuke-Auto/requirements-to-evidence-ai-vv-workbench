@@ -5,14 +5,23 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   offline-vv:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Safety gate negative tests
+        run: python -m unittest discover -s tests -p 'test_public_safety_negative.py' -v
+      - name: Agent permission contract tests
+        run: python -m unittest discover -s tests -p 'test_agent_security_policy.py' -v
       - name: Public safety check
         run: python scripts/public_safety_check.py
       - name: Build dashboard

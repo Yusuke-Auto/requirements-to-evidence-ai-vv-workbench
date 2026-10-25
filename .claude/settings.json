@@ -1,0 +1,102 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "blockReadsOutsideWorkingDirectories": true,
+    "disableBypassPermissionsMode": "disable",
+    "disableAutoMode": "disable",
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(!.env.example)",
+      "Read(secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/hosts.yml)",
+      "Edit(.env)",
+      "Edit(.env.*)",
+      "Edit(!.env.example)",
+      "Edit(secrets/**)",
+      "Edit(~/.ssh/**)",
+      "Edit(~/.aws/**)",
+      "mcp__claude_ai_Claude_Docs__delete",
+      "mcp__claude_ai_Google_Drive__share_file",
+      "mcp__claude_ai_Google_Drive__trash_file",
+      "mcp__claude_ai_Gmail__delete_draft",
+      "mcp__claude_ai_Gmail__delete_label",
+      "mcp__claude_ai_Gmail__trash_message",
+      "mcp__claude_ai_Gmail__trash_thread"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(pip install *)",
+      "Bash(npm install *)",
+      "PowerShell(git push *)",
+      "PowerShell(git reset --hard *)",
+      "PowerShell(git clean *)",
+      "PowerShell(pip install *)",
+      "PowerShell(npm install *)",
+      "mcp__claude_ai_Claude_Docs__create",
+      "mcp__claude_ai_Claude_Docs__batch",
+      "mcp__claude_ai_Claude_Docs__update",
+      "mcp__claude_ai_Claude_Docs__export",
+      "mcp__claude_ai_Google_Drive__*",
+      "mcp__claude_ai_Gmail__*"
+    ]
+  },
+  "sandbox": {
+    "credentials": {
+      "files": [
+        {
+          "path": "~/.ssh",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.aws/credentials",
+          "mode": "deny"
+        }
+      ],
+      "envVars": [
+        {
+          "name": "OPENAI_API_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "GITHUB_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "GH_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "AWS_SESSION_TOKEN",
+          "mode": "deny"
+        }
+      ]
+    },
+    "filesystem": {
+      "denyRead": [
+        ".env",
+        ".env.*",
+        "~/.ssh",
+        "~/.aws"
+      ],
+      "denyWrite": [
+        ".env",
+        ".env.*",
+        "~/.ssh",
+        "~/.aws"
+      ]
+    }
+  }
+}

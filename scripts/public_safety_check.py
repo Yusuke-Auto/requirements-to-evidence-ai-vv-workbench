@@ -32,7 +32,7 @@ def main():
             continue
         if "__pycache__" in p.parts or p.suffix == ".pyc":
             continue
-        if p.suffix.lower() not in TEXT_EXTENSIONS and p.name not in {".gitignore", ".env.example"}:
+        if p.suffix.lower() not in TEXT_EXTENSIONS and p.name not in {".gitignore"} and not (p.name == ".env" or p.name.startswith(".env.")):
             continue
 
         try:
