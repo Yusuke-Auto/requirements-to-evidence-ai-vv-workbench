@@ -82,6 +82,27 @@ Why both tests: Claude Code's shell sandbox does not constrain built-in Read, ho
    A policy-level host-not-allowed denial is PASS. Successful HTTP is FAIL; DNS timeout, generic network error or a permission prompt is INCONCLUSIVE. Do not retry unsandboxed. This tests subprocess egress only, not MCP/WebFetch or cloud-connected tools.
 5. All evidence is metadata only: source, date, capability, expected/actual DENY or UNKNOWN; never copy token values.
 
+### Reviewed claude.ai MCP inventory and draft least-privilege rules (2026-10-25)
+
+A developer reported these connector tool names from a local Claude Code audit; this is **a tool-name inventory**, not a test of tool execution, OAuth scopes or actual per-tool approval:
+
+| claude.ai connector | Visible tool names | Candidate security posture in this synthetic project |
+| --- | --- | --- |
+| Claude Docs | 8: batch, create, delete, export, guide, query, read, update | Require confirmation for create/batch/update/export; deny delete; leave guide/query/read under default policy |
+| Google Drive | 11: copy_file, create_file, download_file_content, get_file_metadata, get_file_permissions, list_recent_files, read_file_content, search_files, share_file, trash_file, update_file | Require confirmation for all Drive tools; deny share_file and trash_file |
+| Gmail | 30 names, including search_threads, get_message, get_thread, create_draft, update_draft, send_message, reply, forward, delete_draft, delete_label, trash_message, trash_thread and label operations | Require confirmation for all Gmail tools; deny delete_draft, delete_label, trash_message and trash_thread. Sending and forwarding still require a person to approve each call |
+
+On the inspected test host, `.claude/settings.local.json` contained `Read(./.env)` and `Edit(./.env)` denies and no MCP entries. The user's user-level `~/.claude/settings.json` had no permission entries; organization/claude.ai session permissions were not fully inspected. The tool audit used *names*, not live tool schemas, and its output showed many deferred-load tools. **Deferred load does not mean deny**. Whether an account/provider grants a particular operation still needs separate verification.
+
+This repository's **draft** shared `.claude/settings.json` now proposes:
+- `ask`: `mcp__claude_ai_Gmail__*`, `mcp__claude_ai_Google_Drive__*` and four Claude Docs writing/export tools.
+- `deny`: Claude Docs delete, Drive share/trash, Gmail draft/label deletion and message/thread trash.
+- Keep `defaultMode=default`, do not add broad `allow` MCP rules, do not change global/user settings. Exact MCP canonical tool names must be checked against a running Claude Code session and `/permissions` **after checkout/merge**; static CI only validates the JSON contract. A deny in this portfolio repo must **not** be mistaken for a universal policy in claude.ai chat or unrelated projects.
+
+**Approval semantics:** MCP tool rules in settings files use full names (`mcp__<server>__<tool>`) or server-wildcard patterns, without parentheses. Deny rules override ask and allow. Asking for Gmail send is a human confirmation guard but does not prevent a person from mistakenly approving a malicious or misdirected send. This is not an egress firewall or enforcement of Google OAuth scopes.
+
+**No destructive verification**: Do not test real Gmail sends, Drive sharing, trash operations or connector writes. Inspect permission settings, tool descriptions, and an actual deny event only with fabricated data and without triggering an external change. The user can choose to disable a connector per project via `/mcp` if its use is not needed.
+
 ## Gate 3: GitHub settings (10 minutes)
 
 1. Open GitHub repository -> Settings -> Branches. For `main`, add a branch protection rule:
