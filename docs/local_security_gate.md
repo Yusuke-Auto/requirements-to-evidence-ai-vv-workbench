@@ -61,7 +61,7 @@ Why both tests: Claude Code's shell sandbox does not constrain built-in Read, ho
 
 ## Completion evidence to write back
 
-For each gate capture: **Before / Change / After / command or screen / expected / actual / PASS-FAIL-INCONCLUSIVE / risk**. Only mark LIFE-462 complete when the machine-based shell/file/network denials, connector inventory, protection settings and PR disposition have verified evidence.
+For each gate capture: **Before / Change / After / command or screen / expected / actual / PASS-FAIL-INCONCLUSIVE / risk**. Only mark the security issue complete when the machine-based shell/file/network denials, connector inventory, protection settings and PR disposition have verified evidence.
 
 References:
 - https://code.claude.com/docs/en/sandboxing
