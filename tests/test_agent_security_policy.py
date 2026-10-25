@@ -29,6 +29,31 @@ class AgentBaselineContractTest(unittest.TestCase):
         self.assertTrue(required.issubset(set(self.policy["permissions"]["ask"])))
         self.assertEqual(self.policy["permissions"]["defaultMode"], "default")
 
+    def test_mcp_connectors_require_approval_for_high_impact_access(self):
+        ask = set(self.policy["permissions"]["ask"])
+        deny = set(self.policy["permissions"]["deny"])
+        for rule in (
+            "mcp__claude_ai_Gmail__*",
+            "mcp__claude_ai_Google_Drive__*",
+            "mcp__claude_ai_Claude_Docs__create",
+            "mcp__claude_ai_Claude_Docs__batch",
+            "mcp__claude_ai_Claude_Docs__update",
+            "mcp__claude_ai_Claude_Docs__export",
+        ):
+            with self.subTest(rule=rule):
+                self.assertIn(rule, ask)
+        for rule in (
+            "mcp__claude_ai_Claude_Docs__delete",
+            "mcp__claude_ai_Google_Drive__share_file",
+            "mcp__claude_ai_Google_Drive__trash_file",
+            "mcp__claude_ai_Gmail__delete_draft",
+            "mcp__claude_ai_Gmail__delete_label",
+            "mcp__claude_ai_Gmail__trash_message",
+            "mcp__claude_ai_Gmail__trash_thread",
+        ):
+            with self.subTest(rule=rule):
+                self.assertIn(rule, deny)
+
     def test_secret_files_denied_by_builtin_tools(self):
         deny = set(self.policy["permissions"]["deny"])
         for operation in ("Read", "Edit"):
