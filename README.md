@@ -82,9 +82,21 @@ See `requirements/`, `scenarios/`, `evidence/`, and `docs/traceability_matrix.md
 
 ## Reproduce the work sample without an API key
 
+**Prerequisites:** Git and Python 3.12 (the Python version used by CI). The offline path needs no API key, AWS credentials, or `pip install` step.
+
+Start in a new, empty working directory. In a terminal (including PowerShell):
+
 ```bash
+git clone https://github.com/Yusuke-Auto/requirements-to-evidence-ai-vv-workbench.git
+cd requirements-to-evidence-ai-vv-workbench
+python --version
+git rev-parse HEAD
 python scripts/run_public_demo.py
+python scripts/public_safety_check.py
+python -m unittest discover -s tests -v
 ```
+
+Record the commit SHA, exit codes, elapsed time, and any instructions that required guessing. The public demo already runs the regression suite internally; the final explicit unittest command is for independently documenting the clean-room gate. This demonstration uses synthetic data only.
 
 This runs:
 
