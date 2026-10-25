@@ -65,6 +65,20 @@
           "mode": "deny"
         }
       ]
+    },
+    "filesystem": {
+      "denyRead": [
+        ".env",
+        ".env.*",
+        "~/.ssh",
+        "~/.aws"
+      ],
+      "denyWrite": [
+        ".env",
+        ".env.*",
+        "~/.ssh",
+        "~/.aws"
+      ]
     }
   }
 }
