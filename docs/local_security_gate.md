@@ -2,7 +2,34 @@
 
 Date: 2026-10-25. Scope: synthetic V&V repo only. **No real secret, private employer data, mail or customer records** are needed. This is an execution checklist, not evidence that the user's actual machine has passed.
 
-## Gate 1: actual host isolation (30 minutes)
+## Gate 0: native Windows permission check (15 minutes; no WSL required)
+
+Claude Code runs on native Windows; built-in OS shell sandboxing does **not**. For a small synthetic and human-supervised project, test Claude's built-in Read permission denial **without claiming subprocess isolation**. Keep default/manual permission mode and avoid untrusted or unattended shell commands.
+
+Use Windows PowerShell in a standalone temporary directory (not System32 and not a personal/work repository):
+
+```powershell
+$testDir = Join-Path $env:TEMP 'life462-permission-test'
+New-Item -ItemType Directory -Force (Join-Path $testDir '.claude') | Out-Null
+Set-Location $testDir
+Set-Content -Path 'public.txt' -Value 'LIFE462_PUBLIC=OK'
+Set-Content -Path '.env' -Value 'SYNTHETIC_ONLY=NOT_A_REAL_SECRET'
+@'
+{
+  "permissions": {
+    "defaultMode": "default",
+    "deny": ["Read(./.env)", "Edit(./.env)"]
+  }
+}
+'@ | Set-Content -Path '.claude/settings.local.json' -Encoding UTF8
+claude.cmd
+```
+
+Inside Claude Code inspect `/permissions` to confirm the local deny rules loaded. Ask it to call its **Read tool only**, once on `public.txt` and once on `.env`. Do not allow it to use shell/PowerShell/Python/MCP or alternate tools, and do not print file contents. Expected: public read allowed, dotenv **tool denied by policy**, no fallback. Screenshot or redacted tool result is execution evidence; an AI's statement without the tool call is insufficient.
+
+If the deny rule is ignored, Gate 0 FAIL. Do not claim this blocks arbitrary subprocesses or network egress on native Windows: file-tool permissions are an application-level guard, not an OS security boundary.
+
+## Gate 1: optional WSL2 OS-enforced isolation (30 minutes)
 
 1. Record the environment without exposing private values:
    - In Windows PowerShell: `wsl --status` and `claude --version`.
@@ -61,7 +88,7 @@ Why both tests: Claude Code's shell sandbox does not constrain built-in Read, ho
 
 ## Completion evidence to write back
 
-For each gate capture: **Before / Change / After / command or screen / expected / actual / PASS-FAIL-INCONCLUSIVE / risk**. Only mark the security issue complete when the machine-based shell/file/network denials, connector inventory, protection settings and PR disposition have verified evidence.
+For each gate capture: **Before / Change / After / command or screen / expected / actual / PASS-FAIL-INCONCLUSIVE / risk**. For the native Windows baseline, require a verified application-level denied Read test plus documented acceptance of unsandboxed subprocess / egress risk; connector inventory, branch protection and PR disposition still need verified evidence. For the stronger OS-sandbox tier, additionally require actual sandboxed shell denied-read and denied-egress tests in WSL2 or a VM/container. Do not mislabel one tier's result as the other.
 
 References:
 - https://code.claude.com/docs/en/sandboxing
